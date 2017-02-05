@@ -2,7 +2,7 @@
 title: \Huge Mise à disposition de matériel pédagogique en ligne
 toc-title: "Sommaire"
 break-after-title: true
-date: \Large Version `1.0.1`
+date: \Large Version `1.0.3`
 author:
 - <span style="font-variant:small-caps;">Amicale des Informaticiens de l’Université de Strasbourg</span>
 - <span style="font-variant:small-caps;">Association Strasbourgeoise des Cursus Master Ingénierie</span>
@@ -100,6 +100,4 @@ Signature de l’enseignant : \vspace{1.6cm}
 Signature des représentants des associations : \vspace{1.6cm}
 
 Numéro d’exemplaire : \vspace{1.6cm}
-
-*Cœur avec les mains.*
 

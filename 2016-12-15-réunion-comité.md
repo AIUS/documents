@@ -9,7 +9,7 @@ author:
 
 **Membres du bureau :**
 Guillaume Grosshenny,
-Nicolas halter,
+Nicolas Halter,
 Thomas Weissgerber,
 Morgane Ritter,
 

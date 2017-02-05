@@ -35,7 +35,6 @@ Coralie <span style="font-variant:small-caps;">Bach</span>
 
 ---
 
-
 # Tour de table
 
 Nicolas Halter — trésorier — signale que les erreurs de caisse positives restent fréquentes, et que les personnes tenant la caisse doivent être vigilantes.
@@ -164,7 +163,6 @@ Le bureau propose d'organiser un repas de cohésion avant Noël.
 La date sera choisie en fonction des disponibilités de tout le monde.
 
 Quentin se propose pour le faire chez lui et comme repas de faire de la raclette.
-
 
 ## CERN 2017
 

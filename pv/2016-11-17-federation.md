@@ -5,6 +5,13 @@ date: "`2016-11-17T18:27:00GMT+1`"
 author:
 - Nicolas <span style="font-variant:small-caps;">Argyriou</span>
 - Luka <span style="font-variant:small-caps;">Vandervelden</span>
+tags:
+- pv
+- alsace.netlib.re
+- hackstub
+- sxb.so
+- lug de strasbourg
+- seeraiwer
 ...
 
 * * *

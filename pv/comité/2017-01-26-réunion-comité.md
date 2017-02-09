@@ -5,6 +5,9 @@ date : "`2017-01-26T18:25:00`"
 author:
 - Morgane <span style="font-variant:small-caps;">Ritter</span>
 - Nicolas <span style="font-variant:small-caps;">Argyriou</span>
+tags:
+- pv
+- réunion comité
 ...
 
 **Membres du bureau :**

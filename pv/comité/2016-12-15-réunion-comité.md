@@ -5,6 +5,9 @@ date : "`2016-12-15T18:45:00`"
 author:
 - Morgane <span style="font-variant:small-caps;">Ritter</span>
 - Maxime <span style="font-variant:small-caps;">Michelat</span>
+tags:
+- pv
+- réunion comité
 ...
 
 **Membres du bureau :**

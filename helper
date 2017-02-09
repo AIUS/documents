@@ -1,0 +1,117 @@
+#!/usr/bin/env moon
+
+--
+-- TODO:
+--  - OOPize everything.
+--  - modules, at least for UI, colors, parser and document-specific code.
+--
+
+json = require "json"
+
+colors = require "utils.colors"
+ui = require "utils.ui"
+
+formats = require "utils.formats"
+parser = require "utils.parser"
+
+Document = require "utils.document"
+
+arg = parser\parse!
+
+if arg.h -- help
+	io.write parser\get_help!, "\n"
+elseif arg.l -- list
+	for entry in Document.find_all!
+		if arg.colors
+			entry = entry\gsub "([^/]*)/", colors.blue .. "%1" .. colors.reset .. "/"
+
+			-- Dates.
+			entry = entry\gsub "(%d%d%d%d)%-(%d%d)%-(%d%d)", (
+				colors.green .. "%1" .. colors.reset .. "-" ..
+				colors.green .. "%2" .. colors.reset .. "-" ..
+				colors.green .. "%3" .. colors.reset
+			)
+			entry = entry\gsub "XXXX%-XX%-XX", (
+				colors.red .. "XXXX" .. colors.reset .. "-" ..
+				colors.red .. "XX" .. colors.reset .. "-" ..
+				colors.red .. "XX" .. colors.reset
+			)
+
+			-- Useful title part.
+			entry = entry\gsub "/([^/]*)%.md$", "/" .. colors.white .. "%1" .. colors.reset .. ".md"
+			entry = entry\gsub "%-([^-]*)", "-" .. colors.white .. "%1" .. colors.reset
+
+		io.write entry, "\n"
+elseif arg.c -- clean
+	files = if #arg.filename > 0
+		arg.filename
+	else
+		[e for e in Document.find_all!]
+
+	for _, filename in ipairs files
+		ui.section "Cleaning files for " .. filename .. "."
+
+		document = Document(filename)\clean!
+elseif arg.b -- build
+	files = if #arg.filename > 0
+		arg.filename
+	else
+		[e for e in Document.find_all!]
+
+	for _, filename in ipairs files
+		ui.section "Generating files for " .. filename .. "."
+
+		Document(filename)\build!
+elseif arg.s -- status
+	files = if #arg.filename > 0
+		arg.filename
+	else
+		[e for e in Document.find_all!]
+
+	for _, filename in ipairs files
+		ui.section "Checking things for " .. filename .. "."
+
+		Document(filename)\status!
+elseif arg.i -- index
+	files = if #arg.filename > 0
+		arg.filename
+	else
+		[e for e in Document.find_all!]
+
+	tags = {}
+
+	output = io.popen "pandoc " ..
+		"--template template.html --css=/pv.css -o index.html -f markdown -t html", "w"
+
+	documents = [Document(filename) for _, filename in ipairs files]
+
+	for _, document in ipairs documents
+		ui.section "Generating index for " .. document.filename .. "."
+
+		headers = document\index!
+
+		if headers.tags
+			for _, tag in ipairs headers.tags
+				unless tags[tag]
+					tags[tag] = {}
+
+				table.insert tags[tag], filename
+
+	table.sort documents, (a, b) ->
+		(a.headers.date or "") > (b.headers.date or "")
+
+	for _, document in ipairs documents
+		output\write document\to_html!, "\n"
+
+	tags = [{name: name, documents: documents} for name, documents in pairs tags]
+
+	table.sort tags, (a, b) ->
+		return a.name < b.name
+
+	with io.open "tags.json", "w"
+		\write json.encode tags
+		\close!
+
+else
+	error "no command"
+

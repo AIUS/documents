@@ -1,11 +1,23 @@
 
+@import url("https://fontlibrary.org/face/gidole-regular");
+
+body {
+	margin: 0;
+
+	font-family: "GidoleRegular", Sans-Serif;
+}
+
 header {
 	padding-top: 1px;
 
 	background: #EEE;
 
-	background: #FFF url("/aius.svg") no-repeat 13% 8px;
-	background-size: 60px;
+	background: #ae3e97;
+	color: #FFF;
+}
+
+header nav, footer {
+	background: #983684;
 }
 
 header h1 {
@@ -14,12 +26,10 @@ header h1 {
 	font-size: 320%;
 } header nav {
 	margin-top: 4px;
-	background: #EDF;
 	padding-left: 8%;
+	padding-right: 8%;
 	margin-top: 23px;
 
-	border-bottom: 1px #BBB solid;
-	border-top: 1px #BBB solid;
 } header nav ul {
 	padding: 0;
 	margin: 0;
@@ -30,12 +40,18 @@ header h1 {
 } header nav a {
 	padding: 6px 8px;
 	display: inline-block;
-	color: #AE3E97;
+	padding-top: 14px;
+	padding-bottom: 14px;
 } header nav a:hover {
-	color: #FFF;
 	background-color: #AE3E97;
-	text-decoration: none;
+}
 
+header nav a, footer a {
+	color: #FFF;
+	text-decoration: none;
+} header nav a:hover, footer a:hover {
+	color: #FFF;
+	text-decoration: none;
 }
 
 h1.title {
@@ -53,10 +69,20 @@ h1.title {
 	text-align: center;
 }
 
-#body, footer {
+.document, footer {
 	padding: 0 8%;
-	margin-top: 35px;
-} #body p, #body table {
+	margin: 0;
+}
+
+#body > * {
+	padding-left: 8%;
+	padding-right: 8%;
+} #body > hr {
+	margin-left: 8%;
+	margin-right: 8%;
+}
+
+#body p, #body table {
 	font-size: 13pt;
 } #body table thead {
 	border-bottom: 1px solid #DDD;
@@ -69,14 +95,147 @@ h1.title {
 	padding: 0 10%;
 } #body table td, #body table th {
 	padding: 0.5% 1%;
-} #body ul li {
+} #body ul > li {
 	font-size: 13pt;
+	margin-left: 32px;
+	margin-right: 32px;
 } #body table tr td:first-child, #body table tr th:first-child {
 	width: 280px;
+}
+
+#body a {
+	color: #983684;
+	text-decoration: none;
+} #body a:hover {
+	text-decoration: underline;
 }
 
 footer {
 	padding-top: 20px;
 	padding-bottom: 20px;
+	color: #FFF;
 }
+
+.document {
+	margin: 0;
+	padding: 8px 8%;
+	min-height: 120px;
+	position: relative;
+} .document:nth-child(2n) {
+	background-color: #FFF;
+} .document:nth-child(2n + 1) {
+	background-color: #EFEFEF;
+}
+
+.document .filename {
+	display: inline-block;
+
+	width: 100px;
+	height: 100px;
+
+	margin-right: 24px;
+
+	float: left;
+
+	padding: 8px;
+
+	font-weight: bold;
+	color: #FFF;
+	font-size: 18pt;
+}
+
+#body .document ul > li {
+	margin: 0;
+}
+
+.document .date {
+	float: right;
+	font-weight: normal;
+}
+
+.document .tags {
+	margin-top: 4px;
+	position: absolute;
+	left: calc(100px + 8%);
+	bottom: 8px;
+} .document .tags li {
+	display: inline-block;
+	list-style-type: none;
+	margin: 0;
+
+	padding: 1px 2px;
+	color: #FFF;
+} .document .tags li:before {
+	content: "#";
+} .document .tags li.author:before {
+	content: "@";
+} .document .tags li.tag:before, .document .tags li.author:before {
+	margin-right: -3px;
+}
+
+.document .authors {
+	margin-top: 4px;
+} .document .authors li {
+	display: inline-block;
+	list-style-type: none;
+	margin: 0;
+	margin-right: 12px;
+}
+
+.document h4, .document ul {
+	margin: 0;
+}
+
+.document a {
+	text-decoration: none;
+}
+
+.document .format-alt a {
+	font-weight: normal;
+} .document .format-alt:before {
+	content: " / ";
+	font-weight: normal;
+} .document .format-alt {
+	font-size: 80%;
+}
+
+
+.document .title {
+	font-size: 22pt;
+	margin: 0;
+} .document .subtitle {
+	margin-bottom: 8px;
+	font-size: 18pt;
+}
+
+.document .filename {
+	background-color: #ae3e97;
+} .document.pv .filename {
+	background-color: #ff6433;
+} .document.other .filename {
+	background-color: #6433ff;
+} .document.pv.comite .filename {
+	background-color: #6433ff;
+}
+
+.document a {
+	color: #ae3e97!important;
+} .document.pv a {
+	color: #ff6433!important;
+} .document.other a {
+	color: #6433ff!important;
+} .document.pv.comite a {
+	color: #6433ff!important;
+}
+
+.document .tags li {
+	background-color: #ae3e97;
+} .document.pv .tags li {
+	background-color: #ff6433;
+} .document.other .tags li {
+	background-color: #6433ff;
+} .document.pv.comite .tags li {
+	background-color: #6433ff;
+}
+
 

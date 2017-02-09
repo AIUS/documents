@@ -10,6 +10,9 @@ author:
 fancyhdr: true
 geometry:
 - margin=1.5in
+tags:
+- legal
+- grande bibliothèque pédagogique libre
 ...
 
 # Introduction

@@ -34,7 +34,7 @@ Hippolyte Hocquard,
 Harmonie Vo Viet Anh
 
 **Invités :**
-Nicolas Frey
+Nicolas Frey,
 Bastien Sulyan
 
 ---

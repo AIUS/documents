@@ -236,7 +236,9 @@ $endif$
 \begin{document}
 $if(title)$
 \maketitle
+$if(fancyhdr)$
 \thispagestyle{fancy}
+$endif$
 $endif$
 $if(abstract)$
 \begin{abstract}

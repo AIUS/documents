@@ -84,6 +84,7 @@ h1.title {
 
 #body p, #body table {
 	font-size: 13pt;
+	text-align: left;
 } #body table thead {
 	border-bottom: 1px solid #DDD;
 } #body table {
@@ -213,9 +214,11 @@ footer {
 } .document.pv .filename {
 	background-color: #ff6433;
 } .document.other .filename {
-	background-color: #6433ff;
+	background-color: #3e5fae;
 } .document.pv.comite .filename {
-	background-color: #6433ff;
+	background-color: #3e5fae;
+} .document.doc .filename {
+	background-color: #3e97ae;
 }
 
 .document a {
@@ -223,9 +226,11 @@ footer {
 } .document.pv a {
 	color: #ff6433!important;
 } .document.other a {
-	color: #6433ff!important;
+	color: #3e5fae!important;
 } .document.pv.comite a {
-	color: #6433ff!important;
+	color: #3e5fae!important;
+} .document.doc a {
+	color: #3e97ae!important;
 }
 
 .document .tags li {
@@ -233,9 +238,11 @@ footer {
 } .document.pv .tags li {
 	background-color: #ff6433;
 } .document.other .tags li {
-	background-color: #6433ff;
+	background-color: #3e5fae;
 } .document.pv.comite .tags li {
-	background-color: #6433ff;
+	background-color: #3e5fae;
+} .document.doc .tags li {
+	background-color: #3e97ae;
 }
 
 

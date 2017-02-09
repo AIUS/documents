@@ -19,6 +19,9 @@ html_formats = =>
 	s = ""
 
 	for _, format in ipairs formats
+		if format.buildable == false
+			continue
+
 		filename = @filename\gsub("%.[^/]*$", "." .. format.extension)
 		s ..= "<span class=\"format-alt\"><a href=\"#{filename}\">#{format.extension}</a></span> "
 

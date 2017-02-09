@@ -25,5 +25,17 @@ formats = require "utils.formats"
 
 	@headers = header
 
+	if @headers.author
+		for i = 1, #@headers.author
+			author = @headers.author[i]
+
+			@headers.author[i] = switch author\gsub("<[^>]*>", "")
+				when "Amicale des Informaticiens de l’Université de Strasbourg"
+					"AIUS"
+				when "Association Strasbourgeoise des Cursus Master Ingénierie"
+					"ASCMI"
+				else
+					author
+
 	header
 

@@ -38,7 +38,7 @@ $for(include-before)$
 $include-before$
 $endfor$
 <header>
-	<h1>Publications de l’AIUS</h1>
+	<h1>#{documents}</h1>
 
 	<nav>
 		<ul>
@@ -76,8 +76,12 @@ $for(include-after)$
 $include-after$
 $endfor$
 <footer>
-	Généré par <a href="http://pandoc.org">pandoc</a>.
-	Approuvé par <a href="http://lukc.upyum.com/tartines">Tartines</a>.
+	<ul>
+		<li class="aius"><a href="https://aius.u-strasbg.fr">&lt;AIUS/&gt;</a></li>
+		<li class="pandoc"><a href="http://pandoc.org">pandoc</a></li>
+		<li class="tartines"><a href="http://lukc.upyum.com/tartines">Tartines</a></li>
+		<li class="afges"><a href="https://afges.org/">afges</a></li>
+	</ul>
 </footer>
 </div>
 </body>

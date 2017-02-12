@@ -23,7 +23,7 @@ html_formats = =>
 			continue
 
 		filename = @filename\gsub("%.[^/]*$", "." .. format.extension)
-		s ..= "<span class=\"format-alt\"><a href=\"#{filename}\">#{format.extension}</a></span> "
+		s ..= "<li class=\"format-alt\"><a href=\"#{filename}\">#{format.extension}</a></li>"
 
 	s
 
@@ -77,10 +77,12 @@ class
 				<div class=\"filename\">#{table.concat directories, ", "}</div>
 				<h3 class=\"title\">
 					<a href=\"#{@filename\gsub("%.[^/]*", ".html")}\">#{@headers.title}</a>
-					#{html_formats @}
 					<span class=\"date\">#{html_date @}</span>
 				</h3>
 				#{if @headers.subtitle then "<h4 class=\"subtitle\">#{@headers.subtitle}</h4>" else ""}
+				<ul class=\"formats\">
+					#{html_formats @}
+				</ul>
 				<ul class=\"tags\">
 					#{html_tags @}
 				</ul>

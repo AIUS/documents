@@ -61,7 +61,7 @@ elseif arg.b -- build
 	for _, filename in ipairs files
 		ui.section "Generating files for " .. filename .. "."
 
-		Document(filename)\build!
+		Document(filename)\build arg
 elseif arg.s -- status
 	files = if #arg.filename > 0
 		arg.filename

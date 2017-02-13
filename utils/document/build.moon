@@ -1,16 +1,28 @@
 
+lfs = require "lfs"
+
 ui = require "utils.ui"
 formats = require "utils.formats"
 
-=>
+(arg) =>
+	inputAttributes = lfs.attributes @filename
+	input = @filename
+
 	for _, data in ipairs formats
 		if data.buildable == false
 			continue
 
-		input = @filename
 		output = do
 			s = input\sub 1, #input - 3
 			s .. "." .. data.extension
+
+		outputAttributes = lfs.attributes output
+
+		if outputAttributes.modification > inputAttributes.modification
+			unless arg.force
+				ui.debug "  not building " .. data.extension
+
+				continue
 
 		ui.info "  building " .. data.extension
 

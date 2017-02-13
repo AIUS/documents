@@ -12,6 +12,7 @@ with argparse "helper", "Helper for AIUS’ documents."
 	with \command "b build"
 		with \argument "filename", "Filename of the markdown file from which to generate documents."
 			\args "*"
+		\flag "-f --force", "Forces rebuild of up-to-date files."
 
 	with \command "c clean"
 		with \argument "filename", "Filename of the markdown file from which to clean generated documents."

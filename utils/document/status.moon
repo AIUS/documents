@@ -14,7 +14,7 @@ formats = require "utils.formats"
 
 	headers = lyaml.load content\gsub("%.%.%..*", "..."), nil
 
-	do
+	if headers.date
 		date = do
 			s = headers.date\sub 2, #headers.date - 1
 			s\gsub "T.*", ""
@@ -25,6 +25,8 @@ formats = require "utils.formats"
 
 			if date != file_date
 				ui.error "Filename’ date and headers’ date do not match."
+	else
+		ui.error "Missing header date."
 
 	do
 		title = headers.title

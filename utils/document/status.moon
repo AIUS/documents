@@ -16,8 +16,14 @@ formats = require "utils.formats"
 
 	if headers.date
 		date = do
-			s = headers.date\sub 2, #headers.date - 1
+			s = if headers.date\match "^`.*`$"
+				headers.date\sub 2, #headers.date - 1
+			else
+				ui.error "Date is not enclosed between '`'-style quotes."
+				headers.date
+
 			s\gsub "T.*", ""
+
 		file_date = @filename\gsub(".*/", "")\gsub("-[^0-9]+", "")
 
 		if file_date\match "%d*-%d*-%d"

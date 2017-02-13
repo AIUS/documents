@@ -22,7 +22,7 @@ if arg.h -- help
 	io.write parser\get_help!, "\n"
 elseif arg.l -- list
 	for entry in Document.find_all!
-		if arg.colors
+		unless arg.no_color
 			entry = entry\gsub "([^/]*)/", colors.blue .. "%1" .. colors.reset .. "/"
 
 			-- Dates.

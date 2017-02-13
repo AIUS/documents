@@ -7,7 +7,7 @@ with argparse "helper", "Helper for AIUS’ documents."
 	\command "h help"
 
 	with \command "l list"
-		\flag "-c --colors --colours", "Adds colours to the output."
+		\flag "-C --no-color --no-colour", "Removes colors from the output."
 
 	with \command "b build"
 		with \argument "filename", "Filename of the markdown file from which to generate documents."

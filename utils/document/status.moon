@@ -24,7 +24,7 @@ formats = require "utils.formats"
 			-- Filename begins by a date.
 
 			if date != file_date
-				ui.error "Filename’ date and headers’ date do not match."
+				ui.error "Filename’s date and headers’ date do not match."
 	else
 		ui.error "Missing header date."
 

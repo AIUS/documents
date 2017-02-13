@@ -1,16 +1,11 @@
 ---
-title: CR de la réunion de comité de l'ASCMI
-date: 02 février 2017
-author: Guillaume Grosshenny & Luka Vandervelden
+title: Réunion de comité de l'ASCMI
+subtitle: Compte rendu
+date: 2017-02-09T18:13
+author: 
+-Guillaume <span style="font-variant:small-caps;">Grosshenny</span> 
+-Luka <span style="font-variant:small-caps;">Vandervelden</span>
 ...
-
-\newpage
-
-\tableofcontents 
-
-\newpage
-
-Début de la réunion à 18h13.
 
 
 Nomination des CM

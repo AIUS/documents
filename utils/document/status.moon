@@ -42,11 +42,16 @@ formats = require "utils.formats"
 
 	do
 		authors = headers.author
+		t = type(authors)
 
-		unless authors
-			ui.error "Missing header authors."
-
-			return
+		switch t
+			when "string"
+				ui.error "Headers’ author is a string."
+			when "nil"
+				ui.error "Missing headers’ author."
+			else
+				unless t == "table"
+					ui.error "Headers’ author is a #{t}, not a table"
 
 	sourceAttributes = lfs.attributes @filename
 

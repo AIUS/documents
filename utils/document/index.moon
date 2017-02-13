@@ -26,6 +26,9 @@ formats = require "utils.formats"
 	@headers = header
 
 	if @headers.author
+		if type(@headers.author) == "string"
+			@headers.author = {@headers.author}
+
 		for i = 1, #@headers.author
 			author = @headers.author[i]
 

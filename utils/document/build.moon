@@ -18,11 +18,12 @@ formats = require "utils.formats"
 
 		outputAttributes = lfs.attributes output
 
-		if outputAttributes.modification > inputAttributes.modification
-			unless arg.force
-				ui.debug "  not building " .. data.extension
+		if outputAttributes
+			if outputAttributes.modification > inputAttributes.modification
+				unless arg.force
+					ui.debug "  not building " .. data.extension
 
-				continue
+					continue
 
 		ui.info "  building " .. data.extension
 

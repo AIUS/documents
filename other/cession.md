@@ -2,7 +2,7 @@
 title: \Huge Mise à disposition de matériel pédagogique en ligne
 toc-title: "Sommaire"
 break-after-title: true
-date: \Large Version `1.0.3`
+date: \Large Version `1.0.4`
 author:
 - <span style="font-variant:small-caps;">Amicale des Informaticiens de l’Université de Strasbourg</span>
 - <span style="font-variant:small-caps;">Association Strasbourgeoise des Cursus Master Ingénierie</span>
@@ -24,7 +24,7 @@ Cette convention a pour vocation d’être passée entre les associations AIUS e
 
 **Grande Bibliothèque pédagogique Libre**
 
-> La *Grande Bibliothèque pédagogique Libre*, est le nom du projet visant à mettre à disposition du matériel pédagogique à disposition des étudiants, ou d’en faciliter l’accès via une base de données en ligne.
+> La *Grande Bibliothèque pédagogique Libre*, est le nom du projet visant à mettre du matériel pédagogique à disposition des étudiants, ou d’en faciliter l’accès via une base de données en ligne.
 
 **Associations**
 
@@ -91,8 +91,7 @@ cédés aux associations.
 
 Les associations déclinent toutes responsabilité en cas de mise à disposition d’un contenu aux détriments des droits qu’un tiers posséderait sur celui-ci.
 
-Il en va de même si par un contributeur désirerait céder à titre exclusif les droits qu’il possède sur un contenu à un tiers, en omettant le droit des associations, ou des utilisateurs,
- sur les œuvres par lui soumises à la Grande Bibliothèque pédagogique  Libre.
+Il en va de même si un contributeur désirerait céder à titre exclusif les droits qu’il possède sur un contenu à un tiers, en omettant le droit des associations, ou des utilisateurs, sur les œuvres par lui soumises à la Grande Bibliothèque pédagogique Libre.
 
 # Signatures
 

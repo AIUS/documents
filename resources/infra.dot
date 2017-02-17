@@ -1,0 +1,46 @@
+
+digraph {
+	subgraph cluster1 {
+		style=invisible
+		node[shape=Msquare]
+
+		LDAP
+		postgresql
+		nginx
+	}
+
+	subgraph cluster2 {
+		style=invisible
+
+		authd
+	}
+
+	subgraph cluster3 {
+		style=invisible
+
+		salesd
+		crocsd
+	}
+
+	subgraph cluster4 {
+		style=invisible
+
+		aiusctl
+		documents
+	}
+
+	authd -> LDAP
+
+	salesd -> authd
+	salesd -> postgresql
+
+	crocsd -> authd
+	crocsd -> postgresql
+
+	aiusctl -> authd
+	aiusctl -> salesd
+	aiusctl -> crocsd
+
+	documents -> nginx
+}
+

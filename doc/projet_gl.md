@@ -73,23 +73,31 @@ De cette manière, de petits groupes de développeurs ou d’étudiants peuvent 
 Plusieurs services ont déjà été développés pour répondre à certains des besoins les plus immédiats de l’association.
 D’autres ont été entamés et abandonnés par manque de personnel dans l’équipe de développement.
 
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
 Nom            Fonction                                                Status
--------------- ------------------------------------------------------- ---------
+-------------- ------------------------------------------------------- -----------
 authd          Authentification.                                       Utilisé
 
 salesd         Ventes et caisse.                                       Utilisé
 
-crocsd         Ventes et réservations de croque-messieurs.             En attente[^1]
-
 documents      Visualisation des procès verbaux et autres              Utilisé
                document formels.
 
-aiusctl        Interface en ligne de commande aux outils de            En attente
-               l’AIUS. Sert principalement aux tests.
+aiusctl        Interface en ligne de commande aux outils de            À l’abandon
+               l’AIUS. Sert principalement à tester le reste des
+			   composants de l’infrastructure.
 
 aiusctl-web    Interface web aux outils de l’AIUS.                     Utilisé
---------------------------------------------------------------------------------
+
+classesd       Outil d’organisation de cours et de parrainages.        En attente[^1]
+
+crocsd         Ventes et réservations de croque-messieurs.             En attente
+
+www            Site web.                                               À l’abandon
+
+demons         Outil de gestion et d’inscription à des tables de       À l’abandon
+               jeux de rôles.
+----------------------------------------------------------------------------------
 
 : Liste des micro-services développés pour l’AIUS
 
@@ -99,7 +107,7 @@ aiusctl-web    Interface web aux outils de l’AIUS.                     Utilis�
 
 Pour s’assurer que les contraintes de modularité soient respectées, chaque service de l’AIUS est implémenté sous la forme d’un micro-service.
 
-![Graphe de dépendance des services](resources/infra.ps "Graphe de dépendances des services")
+![Graphe de dépendance des services](resources/infra.pdf "Graphe de dépendances des services"){width=100%}
 
 Chaque service doit assurer une fonction unique et ne dépendre que des composants utiles pour assurer cette fonction.
 
@@ -143,7 +151,20 @@ Une transition vers une base de données numérique est nécessaire pour pouvoir
 
 Un outil capable de gérer une liste d’adhérents, leurs côtisations, leurs comptes utilisateurs correspondants, et leurs rôles potentiels dans l’équipe de l’AIUS est nécessaire.
 
-### FIXME: Autres besoins?
+### Objectifs pédagogiques & ludiques
+
+Un des objectifs de l’AIUS est d’organiser des évènements ou services à visée pédagogique ou ludique.
+
+Le système de parrainage des amicales[^ademaius], l’organisation d’ateliers et l’organisation de conventions en font partie.
+Ces évènements et services sont en revanche couteux en temps organisationnel et des solutions logicielles[^demons-aius] sont régulièrement demandées par les membres du comité de l’association.
+
+De manière générale, l’association demande des outils permettant aux organisateurs d’évènements de laisser les participants s’inscrire et gérer les données utiles qui leur sont liés.
+Les besoins exacts sont variables au cours du temps et doivent être définis de façon précise avec les organisateurs des différents projets.
+
+[^ademaius]: L’ADEM contribue à mettre en place des parrainages au même titre que l’AIUS.
+
+[^demons-aius]: Un outil d’inscription et de gestion de tables de jeux de rôles était à une époque maintenu par l’AIUS — `aius-demons`.
+L’outil est actuellement en cours de réécriture.
 
 # Architecture
 
@@ -236,7 +257,22 @@ Le format des requêtes reçues et renvoyées par chaque service est l’éléme
 
 Le contenu de chaque objet transmis ainsi que les en-têtes particuliers qui pourraient être traités par les services concernés.
 
-**FIXME: exemple**
+> ```json
+> {
+> 	"username": "i-am-test",
+> 	"password": "i-am-secret"
+> }
+> ```
+> 
+> Exemple : HTTP/GET sur `aius-auth/token`
+
+> ```json
+> {
+> 	"token": "123e4567-e89b-12d3-a456-426655440000"
+> }
+> ```
+> 
+> Exemple : HTTP/GET depuis `aius-auth/token`
 
 Il n’existe actuellement aucune forme de documentation centralisée ou aucun standard de documentation à suivre.
 La mise en place de tels outils sera donc un objectif du projet.
@@ -290,17 +326,37 @@ Ces relectures auront pour objectif de détecter des failles de sécurité poten
 
 # Nouveaux outils
 
+En plus des services actuels, un besoin a été exprimer pour écrire plusieurs nouveaux outils pour l’AIUS.
+
 ## Vente de croque-messieurs
 
-**FIXME**
+L’AIUS organise une vente de croque-messieurs une fois par semaine.
+Chaque croque-monsieur est composé d’une liste d’ingrédients variable, et la sélection de ces ingrédients est à faire par l’adhérent.
+
+La gestion des réservations de croque-messieurs et de leur composition se fait actuellement à l’aide d’une feuille de tableur-grapheur.
+
+Un outil de gestion dédié permettant la réservation en ligne par les adhérents simplifierait le coût organisationnel de l’évènement.
 
 ## Adhésions en ligne
 
-**FIXME**
+L’adhésion à l’AIUS se fait actuellement sur papier.
+Les adhérents de l’AIUS pouvant demander l’accès à de nombreux services (ssh, machines virtuelles, croque-messieurs, etc.), des comptes sur l’infrastructure de l’association doivent être également créés.
+Ces comptes sont pour le moment créés sur demande et au cas par cas.
+
+Permettre des pré-adhésions en ligne réduirait le travail de gestion des adhérents et permettrait de créer des comptes utilisateurs de façon systématique.
+
+Un tel outil devrait également pouvoir permettre aux adhérents de gérer leur compte en ligne (mot de passe, données personnelles, etc.) sans avoir à passer par l’équipe d’administration de l’AIUS.
+
+Le projet est nommé `crocsd` dans le reste du document.
 
 ## Parrainages et cours
 
-**FIXME**
+Les amicales étudiantes, tant l’AIUS que l’ADEM, organisent régulièrement des parrainages pour aider les étudiants en difficulté.
+Ces parrainages sont organisés au cas par cas et sur des sujets restraints.
+
+Un outil en ligne permettant aux étudiants — ou enseignants — de s’inscrire pour demander ou offrir du soutient ou des cours pour des sujets variés — universitaires ou non — faciliterait le partage des connaissances dans la faculté.
+
+Le projet est nommé `classesd` dans le reste du document.
 
 # Équipe
 
@@ -354,6 +410,11 @@ Il est à noter qu’une grande partie de cette équipe est composée d’admini
 
 ## Tâches
 
+Les sections suivantes du document concernent des « *tâches* » — ou projets — spécifiques, qui peuvent être données à des groupes d’étudiants séparés.
+
+La plupart de ces « tâches » peuvent être effectuées en parallèle, mais certaines demanderont de communiquer ou de travailler avec d’autres groupes pour des problèmes précis.
+Par exemple, le groupe travaillant sur `aiusctl-web` devra échanger avec la plupart des autres groupes, et sa taille devra donc être proportionnée.
+
 ### aiusctl
 
 Objectifs :
@@ -384,29 +445,61 @@ Objectifs :
 Détails techniques :
 
 > `aiusctl-web` est écrit en JavaScript avec VueJS.
+>
+> Le nombre d’étudiants requis dépend du nombre de groupes travaillant sur les projets de l’AIUS.
 
 Prérequis :
 
-> Étudiants requis : 1 à 2 étudiants.
+> Étudiants requis : 1 à 4 étudiants.
 
-### authd
+### Gestion d’utilisateurs
 
 Objectifs :
 
-  - Implémenter la gestion des utilisateurs.
-  - Implémenter une gestion d’erreur propre.
-  - Écrire de la documentation d’intégration.
-  - Écrire des tests fonctionnels.
+  - Implémenter la gestion des utilisateurs dans `authd`.
+    Les opérations à implémenter seront la liste des utilisateurs, leur retrait, la vérification des cotisations et l’édition de leurs informations personnelles.
+  - Implémenter une gestion d’erreur propre dans `authd`.
+    Les erreurs devront être documentées.
+  - Compléter la documentation d’`authd`.
+  - Écrire des tests fonctionnels ou unitaires.
+  - Faire enregistrer des journaux utiles et homogènes à l’application.
+
+Détails techniques :
+
+> `authd` est écrit en Rust.
+
+Difficultés :
+
+> Rust est à considérer comme étant un langage difficile pour les débutants en raison des concepts d’extrêmement haut niveau qu’il implémente — par exemple, la durée de vie des références.
+>
+> Si aucun autre groupe ne travaille sur `aiusctl-web`, quatre à cinq étudiants seront nécessaires.
+
+Prérequis :
+
+> Étudiants requis : 3 à 5
+
+### Adhésions en ligne
+
+Objectifs :
+
+  - Implémenter un système de pré-adhésion et ligne et de validation des adhésions par les membres du comité de l’AIUS.
+  - Écrire la documentation et les tests correspondants.
+  - Intégrer l’outil dans `aiusctl-web` pour le rendre immédiatement exploitable.
+
+Détails techniques :
+
+> `authd` est écrit en Rust et `aiusctl-web` en VueJS.
+>
+> Si aucun autre groupe ne travaille sur `aiusctl-web`, les trois étudiants seront nécessaires.
 
 Difficultés :
 
 > `authd` est écrit en Rust.
->
-> Un groupe différent doit de travailler sur une interface à `authd`.
+> Voir « Gestion des utilisateurs ».
 
 Prérequis :
 
-> Étudiants requis : 3 à 4
+> Étudiants requis : 1 à 3
 
 ### salesd
 
@@ -415,30 +508,37 @@ Objectifs :
   - Écrire des tests fonctionnels.
   - Documenter les API internes.
   - Documenter le format des entrées et sorties du service.
-  - Améliorer la capacité de l’outil à être configuré.
+  - Améliorer la capacité de l’outil à être configuré — fichiers de configuration, plus d’options en ligne de commande, variables d’environnement.
+  - Faire enregistrer des journaux utiles et homogènes à l’application.
 
-Difficultés :
+Détails techniques :
 
 > `salesd` est écrit en Crystal.
 >
-> Un groupe différent doit travailler sur une interface à `salesd`.
+> Si aucun autre groupe ne travaille sur `aiusctl-web`, les trois étudiants seront nécessaires.
+
+Difficultés :
+
+> La documentation sur Crystal est encore relativement faible.
+> Beaucoup de documentation sur Ruby est en revanche encore valable pour Crystal.
 
 Prérequis :
 
-> Étudiants requis : 1 à 2 étudiants.
+> Étudiants requis : 1 à 3 étudiants.
 
 ### crocsd
 
 Objectifs :
 
   - Écrire un outil de gestion des réservations et des ventes de croque-messieurs.
-  - Écrire la documentation et les tests correspondant.
+  - Les quantités d’ingrédients et leur consommation devront être pris en charge.
+  - Écrire la documentation et les tests — fonctionnels ou unitaires — correspondant.
 
 Détails technique :
 
 > Le langage de programmation et les outils à utiliser sont au choix[^au-choix] des étudiants du groupe.
 >
-> Une interface correspondante sera à implémenter dans `aiusctl` ou `aiusctl-web`.
+> Si aucun autre groupe ne travaille sur `aiusctl-web`, les quatre étudiants seront nécessaires.
 
 Prérequis :
 
@@ -447,6 +547,26 @@ Prérequis :
 [^au-choix]: Java est interdit pour des raisons de performances.
 PHP est interdit pour des raisons de maintenance.
 Les langages fortement typés ou fournissant des garanties sur la bonne exécution des programmes sont bien entendu préférés.
+
+### classesd
+
+Objectifs :
+
+  - Écrire un cahier des charges en collaboration avec le comité de l’AIUS.
+  - Implémenter l’outil en utilisant `authd` pour gérer l’authentification et les utilisateurs.
+  - Implémenter l’interface correspondante dans `aiusctl-web`.
+  - Écrire la documentation correspondante.
+  - Écrire une batterie de tests fonctionnels ou unitaires.
+
+Détails techniques :
+
+> Le langage de programmation et les outils à utiliser sont au choix des étudiants du groupe.
+>
+> Si aucun autre groupe ne travaille sur `aiusctl-web`, 5 à 8 étudiants seront nécessaires.
+
+Prérequis :
+
+> Étudiants requis : 3 à 8 étudiants.
 
 # Références
 

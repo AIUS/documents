@@ -69,7 +69,7 @@ class
 	to_html: =>
 		name = @filename\gsub ".*/", ""
 		
-		directories = [match for match in @filename\gmatch("[^/]*")]
+		directories = [match for match in @filename\gmatch("[^/]+")]
 		directories[#directories] = nil
 
 		"

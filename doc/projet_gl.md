@@ -1,7 +1,7 @@
 ---
-title: \huge{Assurance qualité pour l’infrastructure de l’AIUS}
-subtitle: Proposition de projet pour le cours de Génie Logiciel
-date: "`2017-02-16`"
+title: \huge Assurance qualité pour l’infrastructure de l’AIUS
+subtitle: Proposition de projets pour le cours de Génie Logiciel
+date: "`2017-02-27`"
 author:
 - Luka <span style="font-variant:small-caps">Vandervelden</span>
 toc-title: "Sommaire"
@@ -20,14 +20,27 @@ tags:
 - infrastructure
 ...
 
+<!--
+
+FIXME:
+
+  - « infrastructure » confusing
+    Pourrait désigner le système de VM et conteneurs, et tout ce qui est dedans.
+    « Services » serait un terme à préférer. Mais… faudrait modifier plein des choses, du coup, maintenant. :(
+  - Tâches
+    - -> Projets
+      Réécrire les morceaux de texte concernés en conséquence.
+
+-->
+
 \vspace{4em}
 
-Ce document décrit une proposition de projet pour l’*Unité d’Enseignement* de *Génie Logiciel*.
-Le projet proposé consiste à mettre en place des dispositifs de qualité d’assurance sur l’infrastructure de l’*AIUS* et de greffer des fonctionnalités manquantes sur cette dernière.
+Ce document décrit une proposition de projets pour l’*Unité d’Enseignement* de *Génie Logiciel*.
 
-Cette proposition présente les besoins logiciels de l’association, son infrastructure actuelle, une liste de modifications à y apporter et les contraintes dans lesquelles ces modifications doivent être apportées, puis la liste des étudiants volontaires.
+Les projets présentés ont pour but d’améliorer ou de compléter les logiciels écrits par l’AIUS.
+Bien que plusieurs tâches de développement ou d’implémentations nouvelles soient décrites, la ligne directrice est l’ajout de mécanismes d’assurance qualité sur le code source de l’AIUS.
 
-Ce document sera mis à jour à chaque fois qu’un étudiant viendra proposer sa contribution ou sa participation au projet ou à une tâche connexe.
+Le présent document décrit également de façon sommaire les besoins logiciels de l’association, l’architecture de son infrastructure logicielle actuelle et des contraintes générales à respecter lors du développement de celle-ci.
 
 \pagebreak
 
@@ -51,7 +64,7 @@ L’infrastructure de l’AIUS doit assurer de façon non exhaustive les fonctio
 
   - garder trace des ventes effectuées dans le local ;
   - permettre les adhésions et la gestion des adhérents ;
-  - faciliter l’accès et l’inscription aux évènements et services de l’AIUS, tels que des conventions de jeux de rôles, des conférences, des ateliers, des ventes de croque-messieurs, etc. ;
+  - faciliter l’accès et l’inscription aux évènements et services de l’AIUS, tels que des conventions de jeux de rôles, des conférences, des ateliers, des ventes de croque-monsieur, etc. ;
   - permettre l’hébergement de services ou de projets maintenus par ses adhérents pour des raisons universitaires ou ludiques ;
   - permettre l’hébergement et la publication des documents formels de l’association.
 
@@ -61,7 +74,7 @@ Pour assurer ces fonctions et assurer leur maintien dans le temps, l’ensemble 
 Additionnellement, les services écrits et mis à jour par l’équipe de développement de l’AIUS doivent être maintenables, extensibles et facilement remplaçables.
 
 Le renouvellement fréquent des membres de l’AIUS[^renouvellement] justifie le besoin de pouvoir retirer et remplacer n’importe quel composant de l’infrastructure sans conséquence néfaste majeure sur son ensemble.
-Par exemple, le retrait du logiciel de caisse ne doit pas avoir de conséquence sur le logiciel de gestion des utilisateurs ou sur le logiciel de vente de croque-messieurs.
+Par exemple, le retrait du logiciel de caisse ne doit pas avoir de conséquence sur le logiciel de gestion des utilisateurs ou sur le logiciel de vente de croque-monsieur.
 
 Chaque outil doit également pouvoir être maintenu par une équipe séparée et n’ayant que des connaissances limitées sur l’architecture de l’ensemble des services.
 De cette manière, de petits groupes de développeurs ou d’étudiants peuvent maintenir, écrire ou, de manière générale, travailler sur des parties isolées du projet sans contrainte ou contrepartie sur le reste de l’équipe.
@@ -91,7 +104,7 @@ aiusctl-web    Interface web aux outils de l’AIUS.                     Utilis�
 
 classesd       Outil d’organisation de cours et de parrainages.        En attente[^1]
 
-crocsd         Ventes et réservations de croque-messieurs.             En attente
+crocsd         Ventes et réservations de croque-monsieur.              En attente
 
 www            Site web.                                               À l’abandon
 
@@ -131,21 +144,29 @@ Chaque projet devrait avoir des contraintes strictes et documentées sur son *co
 
 ### Gestion des ventes
 
+#### Logiciel de caisse
+
 L’AIUS doit disposer d’un logiciel de caisse pour éviter la gestion des ventes manuelle.
 La caisse doit être accessible depuis une machine dédiée dans le local de l’AIUS ou depuis celle d’un membre de l’équipe de l’association[^panne].
 
 Les ventes doivent être archivées et accessibles à distance.
 
-La gestion des stocks et la comptabilité sont des options utiles et régulièrement considérées, mais pas encore jugées comme prioritaires par l’association.
+La gestion des stocks et la comptabilité sont des options utiles et régulièrement considérées, mais pour le moment jugées comme non prioritaires par l’association.
 
-Certaines ventes évènementielles (par exemple, les croque-messieurs) répondent également à des règles uniques (par exemple, sélection des ingrédients par les adhérents) et des outils de gestion adaptés permettraient une réduction de la charge de travail des organisateurs.
+#### Ventes évènementielles
+
+Certaines ventes évènementielles répondent à des règles uniques.
+Par exemple, la vente de croque-monsieur demande aux adhérents de choisir leurs ingrédients pour chaque croque, et cette sélection devrait idéalement se faire en ligne.
+Une gestion fine des stocks est également nécessaire pour éviter les réservations de croques ne pouvant être produits et vendus.
+
+La caisse est donc inadaptée et un outil dédié a donc besoin d’être développé.
 
 [^panne]: La machine dédiée tombe souvent en panne.
 Quand cela arrive, l’ordinateur portable d’un membre doit pouvoir être utilisé jusqu’à ce que la machine dédiée soit à nouveau en état de marche.
 
 ### Gestion des adhérents
 
-La gestion de la liste des adhérents est actuellement faire sur papier.
+La gestion de la liste des adhérents est actuellement faite sur papier.
 
 Une transition vers une base de données numérique est nécessaire pour pouvoir assurer un plus grand nombre de services et de façon automatique.
 
@@ -158,7 +179,7 @@ Un des objectifs de l’AIUS est d’organiser des évènements ou services à v
 Le système de parrainage des amicales[^ademaius], l’organisation d’ateliers et l’organisation de conventions en font partie.
 Ces évènements et services sont en revanche couteux en temps organisationnel et des solutions logicielles[^demons-aius] sont régulièrement demandées par les membres du comité de l’association.
 
-De manière générale, l’association demande des outils permettant aux organisateurs d’évènements de laisser les participants s’inscrire et gérer les données utiles qui leur sont liés.
+De manière générale, les actifs de l’association demandent des outils permettant aux organisateurs d’évènements de laisser les participants s’inscrire et gérer les données utiles qui leur sont associées.
 Les besoins exacts sont variables au cours du temps et doivent être définis de façon précise avec les organisateurs des différents projets.
 
 [^ademaius]: L’ADEM contribue à mettre en place des parrainages au même titre que l’AIUS.
@@ -170,8 +191,10 @@ L’outil est actuellement en cours de réécriture.
 
 ## Authentification
 
-Le composant d’authentification, `authd` ou `aius-authd`, sert de couche d’abstraction entre la base de données des utilisateurs, stockée dans une base de données en LDAP, et le reste de l’infrastructure.
+Le composant d’authentification, `authd` ou `aius-authd`, sert de couche d’abstraction entre la base de données des utilisateurs, stockée dans une base de données en LDAP[^LDAP], et le reste de l’infrastructure.
 Elle sert principalement à occulter la complexité de LDAP, tout en conservant des structures de données flexibles capable d’associer des données arbitraires[^2] aux utilisateurs.
+
+[^LDAP]: <https://en.wikipedia.org/wiki/Lightweight_Directory_Access_Protocol> — *Lightweight Directory Access Protocol*
 
 `authd` fonctionne avec un système de jetons — ou en anglais *tokens* — pour authentifier les utilisateurs auprès des applications.
 Chaque utilisateur (ou client) envoie un nom d’utilisateur et un mot de passe en échange d’un jeton.
@@ -215,35 +238,26 @@ Une interface en ligne de commande permettrait de plus facilement tester les div
 
 ## Git
 
-Le code de l’AIUS est actuellement déposé sur [Github](https://github.com/AIUS).
+Le code de l’AIUS est actuellement déposé sur Github[^Github].
+
+[^Github]: <https://github.com/AIUS>
 
 L’utilisation de git sera imposée pour travailler sur le présent projet.
 
 ## Phabricator
 
-Un outil de gestion de projet nommé *Phabricator* est mis à disposition par l’AIUS pour la gestion de toutes les tâches de développement.
+Un outil de gestion de projet nommé *Phabricator* est mis à disposition[^Phabricator] par l’AIUS pour la gestion de toutes les tâches de développement.
 
-L’outil permet, entre autres, de lister des tâches sur des tableaux kanbans et fournit un wiki.
+[^Phabricator]: <https://phabricator.aius.u-strasbg.fr>
+
+L’outil permet, entre autres, de lister des tâches sur des tableaux kanbans[^kanban] et fournit un wiki.
+
+[^kanban]: <https://en.wikipedia.org/wiki/Kanban_board>
 
 ## Équipes
 
 Chaque micro-service pouvant être écrit dans des technologies complètement différentes, plusieurs équipes peuvent être formées et pourront travailler de façon autonome et en parallèle.
 Les équipes seront en mesure de tester leurs projets de façon croisée (en les testant les uns avec les autres).
-
-# Extensions
-
-Plusieurs des services actuels, bien que fonctionnels, pourraient profiter de fonctionnalités additionnelles.
-
-## Gestion des utilisateurs
-
-`authd` ne permet pour le moment pas aux utilisateurs d’éditer leurs informations personnelles.
-
-Il est pour le moment également impossible pour un administrateur de créer, retirer ou modifier d’autres utilisateurs.
-
-## Adhésions
-
-Les services actuels ne permettent pas à des tiers d’entamer leur adhésion en ligne.
-Les adhésions en ligne pourraient être implémentées dans `authd` et `aiusctl-web`.
 
 # Documentation
 
@@ -263,7 +277,7 @@ Le contenu de chaque objet transmis ainsi que les en-têtes particuliers qui pou
 > 	"password": "i-am-secret"
 > }
 > ```
-> 
+>
 > Exemple : HTTP/GET sur `aius-auth/token`
 
 > ```json
@@ -271,7 +285,7 @@ Le contenu de chaque objet transmis ainsi que les en-têtes particuliers qui pou
 > 	"token": "123e4567-e89b-12d3-a456-426655440000"
 > }
 > ```
-> 
+>
 > Exemple : HTTP/GET depuis `aius-auth/token`
 
 Il n’existe actuellement aucune forme de documentation centralisée ou aucun standard de documentation à suivre.
@@ -293,20 +307,57 @@ Le code écrit par l’AIUS n’est pour le moment *pas* testé.
 
 Un des buts du projet sera d’écrire des suites de test cohérentes et complètes pour les divers composants de l’infrastructure de l’AIUS.
 
-## Intégration
+## Tests d’intégration
 
-## Fonctionnels
+Des tests d’intégration sont à mettre en place.
+Aucune infrastructure n’étant actuellement déployée sur les serveurs de l’AIUS, les différents groupes devront se coordonner avec l’équipe d’administration de l’AIUS pour commencer à mettre en place les tests d’intégration de leurs différents projets.
 
-## Unitaires
+Si aucun outil ne peut être mis en place sur les serveurs de l’AIUS dans des délais raisonables, l’utilisation du service en ligne de Travis sera l’option exploitée.
 
-La mise en place de tests unitaires n’est pas considérée comme prioritaire par l’AIUS, contrairement aux tests d’intégration et aux tests fonctionnels.
+## Tests fonctionnels
+
+Des spécifications des objectifs des logiciels devront être écrits dans le but de rédiger des tests fonctionnels.
+Ces tests devront tester la conformance aux besoins décrits de chaque objet exposé.
+Les outils de test à utiliser sont décrits dans la section « Outils ».
+
+## Tests unitaires
+
+La mise en place de tests unitaires n’est pas considérée comme prioritaire.
+Les tests unitaires sont couteux en temps de développement et mettent difficilement en avant les erreurs de comportement des applications, contrairement aux tests d’intégration et aux tests fonctionnels.
 
 ## Intégration continue
 
 Aucun mécanisme d’intégration continue n’est actuellement mis en place au sein des projets de l’AIUS.
 
-Mettre en place des mécanismes d’intégration continue pourrait être un objectif du projet.
-Il est à noter que l’AIUS possède désormais du matériel permettant d’effectuer des tâches de construction et de tests de façon intensive, et la mise en place de ce matériel ferait alors partie des objectifs des étudiants concernés.
+Les étudiants de chaque projet devront s’assurer que des mécanismes d’intégration continue seront mis en place.
+
+Le choix des outils avec lesquels réaliser cette intégration continue n’a pas encore été fait.
+
+Il est à noter que les dépôts des sources de l’AIUS sont déjà sur Github ; utiliser Travis est donc une option facile à mettre en place et documentée.
+
+## Outils
+
+Les différents services étant écrits dans des langages différents, les tests unitaires devront également être effectués avec des outils différents.
+
+------------------------------------------------------------------------------
+Langage     Outil(s) de test
+----------- ------------------------------------------------------------------
+Crystal     crystal spec[^crystal-spec]
+
+MoonScript  busted
+
+Rust        cargo
+
+JavaScript  *(à définir)*
+
+Autre       *(à définir)*
+------------------------------------------------------------------------------
+
+: Outils de tests unitaires par langage
+
+[^crystal-spec]: Le compilateur de Crystal inclue un outil de tests.
+
+Les outils marqués comme étant « *à définir* » seront à choisir par les étudiants du projet après concertation avec l’équipe d’administration de l’AIUS.
 
 ## Difficultés attendues
 
@@ -324,23 +375,38 @@ L’utilisation de ressources sur le réseau provoque des risques de sécurité 
 Des relectures de code — ou *audits* — devront être effectués en plus des tests d’intégration et fonctionnels.
 Ces relectures auront pour objectif de détecter des failles de sécurité potentielles et de réduire les risques pour l’infrastructure dans son ensemble.
 
+# Extensions
+
+Plusieurs des services actuels, bien que fonctionnels, pourraient profiter de fonctionnalités additionnelles.
+
+## Gestion des utilisateurs
+
+`authd` ne permet pour le moment pas aux utilisateurs d’éditer leurs informations personnelles.
+
+Il est pour le moment également impossible pour un administrateur de créer, retirer ou modifier d’autres utilisateurs.
+
+## Adhésions
+
+Les services actuels ne permettent pas à des tiers d’entamer leur adhésion en ligne.
+Les adhésions en ligne pourraient être implémentées dans `authd` et `aiusctl-web`.
+
 # Nouveaux outils
 
 En plus des services actuels, un besoin a été exprimer pour écrire plusieurs nouveaux outils pour l’AIUS.
 
-## Vente de croque-messieurs
+## Vente de croque-monsieur
 
-L’AIUS organise une vente de croque-messieurs une fois par semaine.
+L’AIUS organise une vente de croque-monsieur une fois par semaine.
 Chaque croque-monsieur est composé d’une liste d’ingrédients variable, et la sélection de ces ingrédients est à faire par l’adhérent.
 
-La gestion des réservations de croque-messieurs et de leur composition se fait actuellement à l’aide d’une feuille de tableur-grapheur.
+La gestion des réservations de croque-monsieur et de leur composition se fait actuellement à l’aide d’une feuille de tableur-grapheur.
 
 Un outil de gestion dédié permettant la réservation en ligne par les adhérents simplifierait le coût organisationnel de l’évènement.
 
 ## Adhésions en ligne
 
 L’adhésion à l’AIUS se fait actuellement sur papier.
-Les adhérents de l’AIUS pouvant demander l’accès à de nombreux services (ssh, machines virtuelles, croque-messieurs, etc.), des comptes sur l’infrastructure de l’association doivent être également créés.
+Les adhérents de l’AIUS pouvant demander l’accès à de nombreux services (ssh, machines virtuelles, croque-monsieur, etc.), des comptes sur l’infrastructure de l’association doivent être également créés.
 Ces comptes sont pour le moment créés sur demande et au cas par cas.
 
 Permettre des pré-adhésions en ligne réduirait le travail de gestion des adhérents et permettrait de créer des comptes utilisateurs de façon systématique.
@@ -362,6 +428,11 @@ Le projet est nommé `classesd` dans le reste du document.
 
 ## Étudiants
 
+Une liste des étudiants participant ne peut être fournie.
+La plupart des étudiants veut attendre d’avoir reçu les sujets alternatifs avant de s’engager dans un groupe ou sur un projet.
+
+## Organisation
+
 **Luka Vandervelden** :
 
    - Chargé de mission à l’AIUS
@@ -369,15 +440,13 @@ Le projet est nommé `classesd` dans le reste du document.
    - Membre de sxb.so et du Hackstub
    - Ancien mainteneur de pkg++
 
+Sera chargé de coordonner les différents groupes et de leur fournir un soutient technique.
+
 **Guillaume Grosshenny** :
 
    - Président de l’AIUS
 
-**Alexandre Combeau**
-
-**Paul Roux FIXME**
-
-**FIXME: NEED MOAR PEOPLE**
+Sera chargé de coordonner les différents groupes et de communiquer l’avis de l’AIUS sur les travaux effectués.
 
 ## Contributeurs extérieurs
 
@@ -386,25 +455,25 @@ L’équipe de développement et d’administration de l’AIUS avec laquelle de
 
 Il est à noter qu’une grande partie de cette équipe est composée d’administrateurs système, et qu’ils imposeront des contraintes pratiques supplémentaires sur le code écrit pour pouvoir le déployer en production.
 
-**Quentin *Sandhose* Gliech** :
+**Quentin *@Sandhose* Gliech** :
 
   - Administrateur réseau à l’AIUS
   - Mainteneur de `aius-authd`.
 
-**Éloïse *Niveale* Stein** :
+**Éloïse *@Niveale* Stein** :
 
   - Vice administratrice réseau à l’AIUS
   - Développeuse de `aiusctl-web`.
 
-**Ludovic *deimos* Muller** :
+**Ludovic *@deimos* Muller** :
 
   - Développeur de `aiusctl-web`.
 
-**Marie-France *caswitch* Kommer** :
+**Marie-France *@caswitch* Kommer** :
 
   - Développeuse de `aius-salesd`.
 
-**Mickaël *Mika* Bauer** :
+**Mickaël *@Mika* Bauer** :
 
   - Développeur de `aius-salesd`.
 
@@ -414,6 +483,8 @@ Les sections suivantes du document concernent des « *tâches* » — ou pro
 
 La plupart de ces « tâches » peuvent être effectuées en parallèle, mais certaines demanderont de communiquer ou de travailler avec d’autres groupes pour des problèmes précis.
 Par exemple, le groupe travaillant sur `aiusctl-web` devra échanger avec la plupart des autres groupes, et sa taille devra donc être proportionnée.
+
+Il est également à noter que le détail des projets peut être adapté facilement.
 
 ### aiusctl
 
@@ -428,7 +499,7 @@ Détails techniques :
 
 Difficultés :
 
-> Les tests fonctionnels demanderont l’installation et la configuration des autres composants de l’infrastructure.
+> Les tests d’intégration demanderont l’installation et la configuration de virtuellement chaque autre composants de l’infrastructure.
 
 Prérequis :
 
@@ -452,7 +523,7 @@ Prérequis :
 
 > Étudiants requis : 1 à 4 étudiants.
 
-### Gestion d’utilisateurs
+### authd — Gestion d’utilisateurs
 
 Objectifs :
 
@@ -467,18 +538,23 @@ Objectifs :
 Détails techniques :
 
 > `authd` est écrit en Rust.
+>
+> Plusieurs des tâches du projet demanderont d’interagir avec une base de données LDAP.
 
 Difficultés :
 
-> Rust est à considérer comme étant un langage difficile pour les débutants en raison des concepts d’extrêmement haut niveau qu’il implémente — par exemple, la durée de vie des références.
+>   - Rust est à considérer comme étant un langage difficile pour les débutants en raison des concepts d’extrêmement haut niveau qu’il implémente — par exemple, la durée de vie des références.
 >
-> Si aucun autre groupe ne travaille sur `aiusctl-web`, quatre à cinq étudiants seront nécessaires.
+>   - Si aucun autre groupe ne travaille sur `aiusctl-web`, quatre à cinq étudiants seront nécessaires.
+>
+>   - LDAP est une technologie nouvelle pour les étudiants, et relativement complexe à prendre en main.
+      L’équipe de l’AIUS et plusieurs contacts dans l’équipe de la Direction Informatique pourront cependant guider les étudiants dans leur découverte de LDAP.
 
 Prérequis :
 
 > Étudiants requis : 3 à 5
 
-### Adhésions en ligne
+### authd — Adhésions en ligne
 
 Objectifs :
 
@@ -495,11 +571,34 @@ Détails techniques :
 Difficultés :
 
 > `authd` est écrit en Rust.
-> Voir « Gestion des utilisateurs ».
+> Voir « authd — Gestion des utilisateurs ».
 
 Prérequis :
 
 > Étudiants requis : 1 à 3
+
+### authd — Backends alternatifs
+
+Objectifs :
+
+  - Restructurer `authd` pour lui permettre d’utiliser une source de données autre que LDAP.
+  - Une fois que des backends différents pourront être ajoutés, ajouter un backend lisant des fichiers d’utilisateurs et de groupes UNIX.
+  - De la documentation de développement devra être écrite concernant l’implémentation de nouveaux backends.
+
+Détails techniques :
+
+> `authd` est écrit en Rust.
+>
+> La présence de backends alternatifs permettra de plus facilement déployer une infrastructure de tests locale.
+
+Difficultés :
+
+> `authd` est écrit en Rust.
+> Voir « authd - Gestion des utilisateurs ».
+
+Prérequis :
+
+> Étudiants requis : 1 à 2
 
 ### salesd
 
@@ -530,7 +629,7 @@ Prérequis :
 
 Objectifs :
 
-  - Écrire un outil de gestion des réservations et des ventes de croque-messieurs.
+  - Écrire un outil de gestion des réservations et des ventes de croque-monsieur.
   - Les quantités d’ingrédients et leur consommation devront être pris en charge.
   - Écrire la documentation et les tests — fonctionnels ou unitaires — correspondant.
 
@@ -589,4 +688,8 @@ Prérequis :
   - <http://pandoc.org>
 
     > Outil de conversion générique de documents *pandoc*.
+
+  - <https://travis-ci.org/>
+
+    > Travis-CI. Outil d’intégration continue open-source.
 

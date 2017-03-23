@@ -1,0 +1,6 @@
+*.7
+*.html
+*.json
+*.pdf
+*.epub
+!template.html

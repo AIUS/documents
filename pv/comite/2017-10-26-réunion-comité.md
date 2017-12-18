@@ -2,6 +2,7 @@
 title : Réunion de comité du 6 novembre 2017
 subtitle: Procès verbal
 author: Quentin [Gliech]{.smallcaps}
+date: "`2017-11-06T18:00:00+01:00`"
 ...
 
 

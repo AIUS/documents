@@ -1,7 +1,8 @@
 ---
 title: Procès-verbal de l'Assemblée Générale Ordinaire du 19 octobre 2017
 author: Quentin [Gliech]{.smallcaps}
----
+date: "`2017-10-19T18:00:00+02:00`"
+...
 
 **Membres présents:**
 [Adam]{.smallcaps} Léo,

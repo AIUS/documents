@@ -5,7 +5,7 @@ date: "`2017-03-23T18:00:00GMT+2`"
 author:
  - Quentin <span style="font-variant:small-caps;">Gliech</span>
  - Nicolas <span style="font-variant:small-caps;">Argyriou</span>
----
+...
 
 **Membres du bureau :**
 Guillaume Grosshenny,

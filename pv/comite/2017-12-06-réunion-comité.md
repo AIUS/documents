@@ -240,7 +240,7 @@ Le 20 décembre aura lieu l'inauguration de l'AGORAé à la Galia.
 
 ---
 
-*18h56: Hippolyte quitte la réunion
+*18h56: Hippolyte quitte la réunion*
 
 ---
 

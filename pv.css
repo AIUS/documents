@@ -121,6 +121,11 @@ footer ul {
 	display: inline-block;
 }
 
+article {
+	max-width: 900px;
+	margin: auto;
+}
+
 #body > * {
 	padding-left: 8%;
 	padding-right: 8%;

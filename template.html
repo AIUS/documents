@@ -51,7 +51,11 @@ $endif$
 	</nav>
 </header>
 
-<div id="body">
+$if(index)$
+<section id="body">
+$else$
+<article id="body">
+$endif$
 $if(title)$
 <h1 class="title">$title$</h1>
 $if(subtitle)$
@@ -71,7 +75,11 @@ $toc$
 </nav>
 $endif$
 $body$
-</div>
+$if(index)$
+</section>
+$else$
+</article>
+$endif$
 $for(include-after)$
 $include-after$
 $endfor$

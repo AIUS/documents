@@ -81,7 +81,7 @@ elseif arg.i -- index
 	tags = {}
 
 	output = io.popen "pandoc " ..
-		"--template template.html --css=/pv.css -o index.html -f markdown -t html", "w"
+		"--template template.html -V index --css=/pv.css -o index.html -f markdown -t html", "w"
 
 	documents = [Document(filename) for _, filename in ipairs files]
 

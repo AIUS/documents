@@ -3,4 +3,6 @@
 *.json
 *.pdf
 *.epub
+*.docx
+*.odt
 !template.html

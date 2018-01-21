@@ -30,7 +30,7 @@ Thomas [Steinmetz]{.smallcaps},
 Romain [Tanguy]{.smallcaps}.
 
 **Invités:**
-Nassie [Mountasir]{.smallcaps}.
+Nassime [Mountasir]{.smallcaps}.
 
 ---
 
@@ -40,7 +40,7 @@ Nassie [Mountasir]{.smallcaps}.
 
 # Tour de table
 
-Marie-France tient à remercier Nicolas [Da Col]{.smallcaps} pour les viennoiseries qu'il a cherché plusieurs fois à sa place durant les dernières semaines.
+Marie-France tient à remercier Guillaume [Da Col]{.smallcaps} pour les viennoiseries qu'il a cherché plusieurs fois à sa place durant les dernières semaines.
 
 ---
 
@@ -72,7 +72,7 @@ Un compte rendu un peu plus complet sera envoyé sur le groupe Facebook tenu par
 
 ---
 
-*18h15: Hippolyte quitte la réunion, pour revenir deux minutes plus tard accompagné de Tarek.*
+*18h15: Hippolyte quitte la réunion, pour revenir deux minutes plus tard accompagné de Tarek*
 
 ---
 
@@ -118,11 +118,11 @@ Le comité doit donc, selon l'article 12 des statut de l'association, pourvoir a
 
 Tarek [Aoulad]{.smallcaps}, ancien Vice-président de l'AIUS, actuellement en Master à Illkirch, se propose au poste.
 
-Également, Julien [Felden]{.smallcaps} souhaites être nommé chargé de mission par le bureau de l'AIUS.
+Également, Julien [Hetzlen]{.smallcaps} souhaites être nommé chargé de mission par le bureau de l'AIUS.
 Il est étudiant à Illkirch, et pourrait y tenir le local de temps à autres.
 
 
-Nomination de Julien [Felden]{.smallcaps} comme chargé de mission, et Tarek [Aoulad]{.smallcaps} comme responsable Vice-Trésorier Illkirch:
+Nomination de Julien [Hetzlen]{.smallcaps} comme chargé de mission, et Tarek [Aoulad]{.smallcaps} comme responsable Vice-Trésorier Illkirch:
 
 | Nombre de votants            | 12 |
 |------------------------------|----|
@@ -189,5 +189,5 @@ Les 15 participants procèdent donc à l'échange.
 - L'administration a demandée à ce que le pot de Noël se déroule devant le GAM, et non sous le GAM.
 
 ---
-*18h55: fin de la réunion.*
+*18h55: fin de la réunion*
 

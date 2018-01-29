@@ -236,7 +236,7 @@ La liste de Cyril a été élue.
 Un CA de l'AFGES a eu lieu hier.
 Il a été entre autres question de la réforme de l'entrée à l'université proposée par le gouvernement.
 
-Le 20 décembre aura lieu l'inauguration de l'AGORAé à la Galia.
+Le 20 décembre aura lieu l'inauguration de l'AGORAé à la Gallia.
 
 ---
 

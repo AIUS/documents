@@ -134,7 +134,7 @@ Une réunion par voie électronique a eu lieu hier avec l'AFNEUS.
 
 Le dossier CAPE sera envoyé demain.
 
-Le thème pour Strasbourg sera « les femmes en science ».
+Le thème national sera « les femmes en science ».
 
 Les participants devront trouver un sujet qui couvre au moins deux composantes parmi les 5 principales.
 

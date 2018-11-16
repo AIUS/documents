@@ -240,6 +240,10 @@ article {
 	font-weight: normal;
 }
 
+.smallcaps {
+	font-variant: smallcaps;
+}
+
 .document a {
 	text-decoration: none;
 }

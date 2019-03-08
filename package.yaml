@@ -1,0 +1,54 @@
+name:                documents
+version:             0.1.0.0
+github:              "aius/documents"
+license:             BSD3
+author:              "Quentin Gliech"
+maintainer:          "quentin.gliech@etu.unistra.fr"
+copyright:           "2019 Quentin Gliech"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/aius/documents#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- pandoc
+- pandoc-types
+- containers
+- text
+- directory-tree
+- blaze-html
+
+library:
+  source-dirs: src
+
+executables:
+  documents-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - documents
+
+tests:
+  documents-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - documents

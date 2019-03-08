@@ -6,3 +6,6 @@
 *.docx
 *.odt
 !template.html
+.stack-work/
+documents.cabal
+*~

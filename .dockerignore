@@ -1,0 +1,5 @@
+**/*.pdf
+**/*.html
+**/*.7
+**/*.epub
+!template.*

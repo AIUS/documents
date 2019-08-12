@@ -315,7 +315,7 @@ Si un étudiant demande un pack, il faut lui demander sa carte de membre et la p
 ## Petits pains
 
 Un sondage sera envoyé pour établir un planning pour chercher les petits pains le matin.
-Les viennoiseries sont à chercher au Fournir St-Matthias.
+Les viennoiseries sont à chercher au Fournil St-Matthias.
 
 
 ## Club JdR
